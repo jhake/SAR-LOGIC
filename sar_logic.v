@@ -15,33 +15,44 @@ module sar_logic(
 	output reg [8:0] fine_sca2_btm
 	);
 	
-	parameter S_start 	= 3'd0;
-	parameter S_sample	= 3'd1;
-	parameter S_compare	= 3'd2;
-	parameter S_decide	= 3'd3;
+	parameter S_wait		= 3'd0;
+	parameter S_comprst	= 3'd1;
+	parameter S_coarse	= 3'd2;
+	parameter S_bndset	= 3'd3;
+	parameter S_fine		= 3'd4;
 
 	reg [3:0] state;
-	reg [3:0] b;
+	reg [3:0] b_coarse;
+	reg [3:0] b_fine;
 
 	always @(posedge clk) begin //state transitions
 		if (rst) 
-			state <= S_start;
+			state <= S_wait;
 		else
 			case(state)
-				S_start:
+				S_wait:
 					if(cnvst)
-						state <= S_sample;
+						state <= S_comprst;
 					else 
-						state <= S_start;
-				S_sample:
-					state <= S_compare;
-				S_compare:
-					state <= S_decide;
-				S_decide:
-					if(b==0)
-						state <= S_start;
+						state <= S_wait;
+				S_comprst:
+					if(b_coarse)
+						state <= S_coarse;
 					else
-						state <= S_compare;
+						state <= S_fine;
+				S_coarse:
+					if(b_coarse==0)
+						state <= S_bndset;
+					else
+						state <= S_comprst;
+				S_bndset:
+					state <= S_comprst;
+				S_fine:
+					if(b_fine==0)
+						state <= S_wait;
+					else
+						state <= S_comprst;
+
 			endcase
 	end
 
@@ -51,32 +62,46 @@ module sar_logic(
 			// reset
 			eoc <= 0;
 		else 
-			if (b == 0 && state == S_decide) 
+			if (b_fine == 0 && state == S_fine) 
 				eoc <= 1;
 			else
 				eoc <= 0;
 	end
 
-	always @(posedge clk) begin //b
+	always @(posedge clk) begin //b_coarse
 		if (rst)
 			// reset
-			b <= 0;
+			b_coarse <= 0;
 		else 
 			case(state)
-				S_sample:
-					b <= 4'd7;
-				S_decide:
-					if(b)
-						b <= b - 1; 
+				S_wait:
+					b_coarse <= 4'd3;
+				S_coarse:
+					if(b_coarse)
+						b_coarse <= b_coarse - 1;
 			endcase
 	end
 
-	always @(posedge clk) begin //s_clk
+	always @(posedge clk) begin //b_fine
+		if (rst)
+			// reset
+			b_fine <= 0;
+		else 
+			case(state)
+				S_wait:
+					b_fine <= 4'd3;
+				S_fine:
+					if(b_fine)
+						b_fine <= b_fine - 1;
+			endcase
+	end
+
+	always @(*) begin //s_clk
 		if (rst) 
 			// reset
-			s_clk <= 0;
+			s_clk <= 1;
 		else 
-			if (state == S_sample) 
+			if (state == S_wait) 
 				s_clk <= 1;
 			else
 				s_clk <= 0;
@@ -87,7 +112,7 @@ module sar_logic(
 			// reset
 			cmp_clk <= 0;
 		else 
-			if (state == S_compare) 
+			if (state == S_comprst) 
 				cmp_clk <= 1;
 			else
 				cmp_clk <= 0;
@@ -100,13 +125,21 @@ module sar_logic(
 		end
 		else
 			case(state)
-				S_start:
+				S_wait:
 					sar[4'd7] <= 1;
-				S_decide: begin
+				S_coarse: begin
 					if(cmp_out == 0)
-						sar[b] <= 0;
-					if(b)
-						sar[b-1] <= 1;
+						sar[b_coarse+4'd4] <= 0;
+					if(b_coarse)
+						sar[b_coarse+4'd3] <= 1;
+				end
+				S_bndset:
+					sar[4'd3] <= 1;
+				S_fine: begin
+					if(cmp_out == 0)
+						sar[b_fine] <= 0;
+					if(b_fine)
+						sar[b_fine-1] <= 1;
 				end
 			endcase
 	end
@@ -114,76 +147,97 @@ module sar_logic(
 	always @(posedge clk) begin //DAC_switch_control
 		if (rst) begin
 			// reset
-			fine_sca1_top[8:0] <= 9'b111111111;
-			fine_sca1_btm[8:0] <= 0;
-			fine_sca2_top[8:0] <= 9'b111111111;
-			fine_sca2_btm[8:0] <= 0;
+			fine_sca1_top <= 9'b111111111;
+			fine_sca1_btm <= 9'b111100000;
+			fine_sca2_top <= 9'b111111111;
+			fine_sca2_btm <= 9'b111100000;
 		end
 		else
 			case(state)
-				S_start: begin
-					fine_sca1_top[8:0] <= 9'b111111111;
-					fine_sca1_btm[8:0] <= 0;
-					fine_sca2_top[8:0] <= 9'b111111111;
-					fine_sca2_btm[8:0] <= 0;
+				S_wait: begin
+					fine_sca1_top <= 9'b111111111;
+					fine_sca1_btm <= 9'b111100000;
+					fine_sca2_top <= 9'b111111111;
+					fine_sca2_btm <= 9'b000000000;
 				end
-				S_decide:
-					case(b)
-						4'd7:
-							if(cmp_out) begin
-								
-							end					
-							else begin
-								
-							end
-						4'd6:
-							if(cmp_out) begin
-								
-							end					
-							else begin
-								
-							end
-						4'd5:
-							if(cmp_out) begin
-								
-							end					
-							else begin
-								
-							end
-						4'd4:
-							if(cmp_out) begin
-								
-							end					
-							else begin
-								
-							end
+				S_coarse:
+					case(b_coarse)
 						4'd3:
 							if(cmp_out) begin
-								
-							end					
+								fine_sca1_btm[4:3] <= 2'b11;
+							end		
+
 							else begin
-								
+								fine_sca1_btm[8] <= 0;
 							end
 						4'd2:
 							if(cmp_out) begin
-								
-							end					
+								fine_sca1_btm[2] <= 1;
+							end		
+											
 							else begin
-								
+								fine_sca1_btm[7] <= 0;
 							end
 						4'd1:
 							if(cmp_out) begin
-								
-							end					
+								fine_sca1_btm[1] <= 1;
+							end		
+											
 							else begin
-								
+								fine_sca1_btm[6] <= 0;
 							end
 						4'd0:
 							if(cmp_out) begin
-								
-							end					
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end		
+											
 							else begin
-								
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end
+					endcase
+				S_fine:
+					case(b_fine)
+						4'd3:
+							if(cmp_out) begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end		
+											
+							else begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end
+						4'd2:
+							if(cmp_out) begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end		
+											
+							else begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end
+						4'd1:
+							if(cmp_out) begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end		
+											
+							else begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end
+						4'd0:
+							if(cmp_out) begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
+							end		
+											
+							else begin
+								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
 							end
 
 					endcase				
