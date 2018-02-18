@@ -1,5 +1,5 @@
 $date
-	Sat Feb 17 21:39:57 2018
+	Sun Feb 18 02:07:52 2018
 $end
 $version
 	Icarus Verilog
@@ -10,253 +10,277 @@ $end
 $scope module sar_logic_tb $end
 $var wire 8 ! sar [7:0] $end
 $var wire 1 " s_clk $end
-$var wire 1 # eoc $end
-$var wire 1 $ cmp_clk $end
-$var reg 1 % clk $end
-$var reg 1 & cmp_out $end
-$var reg 1 ' cnvst $end
-$var reg 1 ( rst $end
+$var wire 9 # fine_sca2_top [8:0] $end
+$var wire 9 $ fine_sca2_btm [8:0] $end
+$var wire 9 % fine_sca1_top [8:0] $end
+$var wire 9 & fine_sca1_btm [8:0] $end
+$var wire 1 ' eoc $end
+$var wire 1 ( cmp_clk $end
+$var reg 1 ) clk $end
+$var reg 1 * cmp_out $end
+$var reg 1 + cnvst $end
+$var reg 1 , rst $end
 $scope module test $end
-$var wire 1 % clk $end
-$var wire 1 & cmp_out $end
-$var wire 1 ' cnvst $end
-$var wire 1 ( rst $end
-$var reg 4 ) b [3:0] $end
-$var reg 1 $ cmp_clk $end
-$var reg 1 # eoc $end
+$var wire 1 ) clk $end
+$var wire 1 * cmp_out $end
+$var wire 1 + cnvst $end
+$var wire 1 , rst $end
+$var reg 4 - b [3:0] $end
+$var reg 1 ( cmp_clk $end
+$var reg 1 ' eoc $end
+$var reg 9 . fine_sca1_btm [8:0] $end
+$var reg 9 / fine_sca1_top [8:0] $end
+$var reg 9 0 fine_sca2_btm [8:0] $end
+$var reg 9 1 fine_sca2_top [8:0] $end
 $var reg 1 " s_clk $end
-$var reg 8 * sar [7:0] $end
-$var reg 4 + state [3:0] $end
+$var reg 8 2 sar [7:0] $end
+$var reg 4 3 state [3:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx +
-bx *
-bx )
-1(
-0'
-0&
-0%
-x$
-x#
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+1,
+0+
+0*
+0)
+x(
+x'
+bx &
+bx %
+bx $
+bx #
 x"
 bx !
 $end
 #50
-b0 +
-0#
-b0 )
+b0 3
+0'
+b0 -
 0"
-0$
-b0 !
-b0 *
-1%
-#100
-0%
-#150
-1%
-#200
-0%
-#250
-1%
-#300
-0%
-1'
 0(
+b0 !
+b0 2
+b0 $
+b0 0
+b111111111 #
+b111111111 1
+b0 &
+b0 .
+b111111111 %
+b111111111 /
+1)
+#100
+0)
+#150
+1)
+#200
+0)
+#250
+1)
+#300
+0)
+1+
+0,
 #350
 b10000000 !
-b10000000 *
-b1 +
-1%
+b10000000 2
+b1 3
+1)
 #400
-0%
+0)
 #450
-b10 +
-b111 )
+b10 3
+b111 -
 1"
-1%
+1)
 #500
-0%
-0'
+0)
+0+
 #550
-1$
+1(
 0"
-b11 +
-1%
+b11 3
+1)
 #600
-0%
+0)
 #650
-b10 +
-b110 )
-0$
+b10 3
+b110 -
+0(
 b1000000 !
-b1000000 *
-1%
+b1000000 2
+1)
 #700
-0%
+0)
 #750
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #800
-0%
+0)
 #850
-b10 +
-b101 )
-0$
+b10 3
+b101 -
+0(
 b100000 !
-b100000 *
-1%
+b100000 2
+1)
 #900
-0%
+0)
 #950
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #1000
-0%
+0)
 #1050
-b10 +
-b100 )
-0$
+b10 3
+b100 -
+0(
 b10000 !
-b10000 *
-1%
+b10000 2
+1)
 #1100
-0%
+0)
 #1150
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #1200
-0%
+0)
 #1250
-b10 +
-b11 )
-0$
+b10 3
+b11 -
+0(
 b1000 !
-b1000 *
-1%
+b1000 2
+1)
 #1300
-0%
+0)
 #1350
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #1400
-0%
+0)
 #1450
-b10 +
-b10 )
-0$
+b10 3
+b10 -
+0(
 b100 !
-b100 *
-1%
+b100 2
+1)
 #1500
-0%
+0)
 #1550
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #1600
-0%
+0)
 #1650
-b10 +
-b1 )
-0$
+b10 3
+b1 -
+0(
 b10 !
-b10 *
-1%
+b10 2
+1)
 #1700
-0%
+0)
 #1750
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #1800
-0%
+0)
 #1850
-b10 +
-b0 )
-0$
+b10 3
+b0 -
+0(
 b1 !
-b1 *
-1%
+b1 2
+1)
 #1900
-0%
+0)
 #1950
-1$
-b11 +
-1%
+1(
+b11 3
+1)
 #2000
-0%
+0)
 #2050
-b0 +
-1#
-0$
+b0 3
+1'
+0(
 b0 !
-b0 *
-1%
+b0 2
+1)
 #2100
-0%
+0)
 #2150
 b10000000 !
-b10000000 *
-0#
-1%
+b10000000 2
+0'
+1)
 #2200
-0%
+0)
 #2250
-1%
+1)
 #2300
-0%
+0)
 #2350
-1%
+1)
 #2400
-0%
+0)
 #2450
-1%
+1)
 #2500
-0%
+0)
 #2550
-1%
+1)
 #2600
-0%
+0)
 #2650
-1%
+1)
 #2700
-0%
+0)
 #2750
-1%
+1)
 #2800
-0%
+0)
 #2850
-1%
+1)
 #2900
-0%
+0)
 #2950
-1%
+1)
 #3000
-0%
+0)
 #3050
-1%
+1)
 #3100
-0%
+0)
 #3150
-1%
+1)
 #3200
-0%
+0)
 #3250
-1%
+1)
 #3300
-0%
+0)
 #3350
-1%
+1)
 #3400
-0%
+0)
 #3450
-1%
+1)
 #3500
-0%
+0)

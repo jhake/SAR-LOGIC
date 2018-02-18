@@ -7,13 +7,12 @@ module sar_logic(
 	output reg eoc, // end of conversion
 	output reg cmp_clk, // comparator clock
 
-	output reg s_clk // bootstrap switch clock
+	output reg s_clk, // bootstrap switch clock
 
-/*	output reg fine_sca1_top [8:0],
-	output reg fine_sca1_btm [8:0],
-	output reg fine_sca2_top [8:0],
-	output reg fine_sca2_btm [8:0],
-*/
+	output reg [8:0] fine_sca1_top,
+	output reg [8:0] fine_sca1_btm,
+	output reg [8:0] fine_sca2_top,
+	output reg [8:0] fine_sca2_btm
 	);
 	
 	parameter S_start 	= 3'd0;
@@ -115,27 +114,27 @@ module sar_logic(
 	always @(posedge clk) begin //DAC_switch_control
 		if (rst) begin
 			// reset
-			fine_sca1_top <= 9'b111111111;
-			fine_sca1_btm <= 0;
-			fine_sca2_top <= 9'b111111111;
-			fine_sca2_btm <= 0;
+			fine_sca1_top[8:0] <= 9'b111111111;
+			fine_sca1_btm[8:0] <= 0;
+			fine_sca2_top[8:0] <= 9'b111111111;
+			fine_sca2_btm[8:0] <= 0;
 		end
 		else
 			case(state)
 				S_start: begin
-					fine_sca1_top <= 9'b111111111;
-					fine_sca1_btm <= 0;
-					fine_sca2_top <= 9'b111111111;
-					fine_sca2_btm <= 0;
+					fine_sca1_top[8:0] <= 9'b111111111;
+					fine_sca1_btm[8:0] <= 0;
+					fine_sca2_top[8:0] <= 9'b111111111;
+					fine_sca2_btm[8:0] <= 0;
 				end
-				S_decide: begin
+				/*S_decide: begin
 					if(cmp_out == 0)
 						case(b)
 						endcase
 					else
 						case(b)
 						endcase
-				end
+				end*/
 			endcase
 		
 	end
