@@ -127,14 +127,66 @@ module sar_logic(
 					fine_sca2_top[8:0] <= 9'b111111111;
 					fine_sca2_btm[8:0] <= 0;
 				end
-				/*S_decide: begin
-					if(cmp_out == 0)
-						case(b)
-						endcase
-					else
-						case(b)
-						endcase
-				end*/
+				S_decide:
+					case(b)
+						4'd7:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd6:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd5:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd4:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd3:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd2:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd1:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+						4'd0:
+							if(cmp_out) begin
+								
+							end					
+							else begin
+								
+							end
+
+					endcase				
 			endcase
 		
 	end
