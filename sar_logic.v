@@ -279,16 +279,16 @@ module sar_logic(
 							else begin
 								fine_sca2_top[3:2] <= 2'b11;
 							end
-						4'd0:
-							if( (cmp_out && fine_up == 0) || (cmp_out == 0 && fine_up) ) begin
-								fine_sca1_top[6:5] <= 2'b11;
-								fine_sca1_top[0] <= 1;
-							end		
+						// 4'd0:
+						// 	if( (cmp_out && fine_up == 0) || (cmp_out == 0 && fine_up) ) begin
+						// 		fine_sca1_top[6:5] <= 2'b11;
+						// 		fine_sca1_top[0] <= 1;
+						// 	end		
 											
-							else begin
-								fine_sca2_top[6:5] <= 2'b11;
-								fine_sca2_top[0] <= 1;
-							end
+						// 	else begin
+						// 		fine_sca2_top[6:5] <= 2'b11;
+						// 		fine_sca2_top[0] <= 1;
+						// 	end
 
 					endcase				
 			endcase
