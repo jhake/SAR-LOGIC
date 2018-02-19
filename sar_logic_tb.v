@@ -14,9 +14,10 @@ module sar_logic_tb;
 	wire [8:0] fine_sca1_btm;
 	wire [8:0] fine_sca2_top;
 	wire [8:0] fine_sca2_btm;
+	wire fine_switch_S;
 
 
-	sar_logic test(clk, rst, cnvst, cmp_out, sar, eoc, cmp_clk, s_clk, fine_sca1_top, fine_sca1_btm, fine_sca2_top, fine_sca2_btm);
+	sar_logic test(clk, rst, cnvst, cmp_out, sar, eoc, cmp_clk, s_clk, fine_sca1_top, fine_sca1_btm, fine_sca2_top, fine_sca2_btm, fine_switch_S);
 
 	always #5 clk = !clk;
 
