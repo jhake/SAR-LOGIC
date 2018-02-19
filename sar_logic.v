@@ -8,12 +8,19 @@ module sar_logic(
 	output reg cmp_clk, // comparator clock
 
 	output reg s_clk, // bootstrap switch clock
-
 	output reg [8:0] fine_sca1_top,
 	output reg [8:0] fine_sca1_btm,
 	output reg [8:0] fine_sca2_top,
 	output reg [8:0] fine_sca2_btm,
-	output reg fine_switch_S
+	output reg fine_switch_S,
+
+	//INVERTED OUTPUTS
+	output s_clk_not,
+	output [8:0] fine_sca1_top_not,
+	output [8:0] fine_sca1_btm_not,
+	output [8:0] fine_sca2_top_not,
+	output [8:0] fine_sca2_btm_not,
+	output fine_switch_S_not
 	);
 	
 	parameter S_wait		= 3'd0;
@@ -21,6 +28,13 @@ module sar_logic(
 	parameter S_coarse	= 3'd2;
 	parameter S_bndset	= 3'd3;
 	parameter S_fine		= 3'd4;
+
+	assign s_clk_not = ~s_clk;
+	assign fine_sca1_top_not = ~fine_sca1_top;
+	assign fine_sca1_btm_not = ~fine_sca1_btm;
+	assign fine_sca2_top_not = ~fine_sca2_top;
+	assign fine_sca2_btm_not = ~fine_sca2_btm;
+	assign fine_switch_S_not = ~fine_switch_S;
 
 	reg [8:0] fine_sca1_top_wait;
 	reg [8:0] fine_sca2_top_wait;
