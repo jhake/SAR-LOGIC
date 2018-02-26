@@ -37,12 +37,12 @@ module sar_logic_tb;
 		clk = 0;
 		rst = 1;
 		cnvst = 0;
-		cmp_out = 0;
+		cmp_out = 1;
 
 		#30
 
 		rst = 0;
-		cmp_out = 0;
+		cmp_out = 1;
 		cnvst = 1;
 
 		#20

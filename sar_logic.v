@@ -27,7 +27,8 @@ module sar_logic(
 	parameter S_comprst	= 3'd1;
 	parameter S_coarse	= 3'd2;
 	parameter S_bndset	= 3'd3;
-	parameter S_fine		= 3'd4;
+	parameter S_swtop		= 3'd4;
+	parameter S_fine		= 3'd5;
 
 	assign s_clk_not = ~s_clk;
 	assign fine_sca1_top_not = ~fine_sca1_top;
@@ -72,7 +73,9 @@ module sar_logic(
 					if(bndset)
 						state <= S_bndset;
 					else
-						state <= S_comprst;
+						state <= S_swtop;
+				S_swtop:
+					state <= S_comprst;
 				S_fine:
 					if(b_fine==0)
 						state <= S_wait;
@@ -174,15 +177,18 @@ module sar_logic(
 		else
 			case(state)
 				S_wait:
-					sar[4'd7] <= 1;
+					sar <= 8'b10000000;
 				S_coarse: begin
 					if(cmp_out == 0)
 						sar[b_coarse+4'd4] <= 0;
 					if(b_coarse)
 						sar[b_coarse+4'd3] <= 1;
 				end
-				S_bndset:
+				S_bndset: begin
+					if(cmp_out == 0)
+						sar[4'd4] <= 0;
 					sar[4'd3] <= 1;
+				end
 				S_fine: begin
 					if(cmp_out == 0)
 						sar[b_fine] <= 0;
@@ -261,14 +267,17 @@ module sar_logic(
 								fine_sca2_btm[5] <= 0;
 								fine_sca2_btm[4:0] <= fine_sca1_btm[4:0];
 							end
-						0: begin
-							fine_sca1_top_wait <= 9'b000000010;
-							fine_sca2_top_wait <= 9'b000000010;
-							fine_sca1_top <= 9'b000000010;
-							fine_sca2_top <= 9'b000000010;
+						0:
 							fine_switch_S <= 1;
-						end
+
 					endcase
+
+				S_swtop: begin
+					fine_sca1_top_wait <= 9'b000000010;
+					fine_sca2_top_wait <= 9'b000000010;
+					fine_sca1_top <= 9'b000000010;
+					fine_sca2_top <= 9'b000000010;
+				end
 
 				S_fine:
 					case(b_fine)
