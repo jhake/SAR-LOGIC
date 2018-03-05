@@ -49,6 +49,7 @@ module sar_logic(
 	reg [3:0] b_fine;
 	reg bndset;
 	reg drain;
+	reg swtop;
 
 	reg fine_up; // 1 if SCA2 has upper bound voltage
 
@@ -85,7 +86,10 @@ module sar_logic(
 					else
 						state <= S_swtop;
 				S_swtop:
-					state <= S_comprst;
+					if(swtop)
+						state <= S_swtop;
+					else
+						state <= S_comprst;	
 				S_fine:
 					if(b_fine==0)
 						state <= S_wait;
@@ -188,6 +192,17 @@ module sar_logic(
 				drain <= 0;
 			else if (state == S_wait)
 				drain <= 1;
+	end
+
+	always @(posedge clk) begin //swtop
+		if (rst) 
+			// reset
+			swtop <= 1;
+		else 
+			if (state == S_swtop) 
+				swtop <= 0;
+			else if (state == S_wait)
+				swtop <= 1;
 	end
 
 	always @(posedge clk) begin //sar
@@ -302,12 +317,17 @@ module sar_logic(
 
 					endcase
 
-				S_swtop: begin
-					fine_sca1_top_wait <= 9'b000000010;
-					fine_sca2_top_wait <= 9'b000000010;
-					fine_sca1_top <= 9'b000000010;
-					fine_sca2_top <= 9'b000000010;
-				end
+				S_swtop: 
+					if(swtop) begin
+						fine_sca1_top_wait <= 9'b000000010;
+						fine_sca2_top_wait <= 9'b000000010;
+						fine_sca1_top <= 9'b000000000;
+						fine_sca2_top <= 9'b000000000;
+					end
+					else begin
+						fine_sca2_top <= 9'b000000010;
+						fine_sca1_top <= 9'b000000010;
+					end
 
 				S_fine:
 					case(b_fine)
