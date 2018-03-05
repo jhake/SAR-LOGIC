@@ -1,5 +1,5 @@
 $date
-	Mon Feb 26 19:00:54 2018
+	Mon Mar 05 15:25:47 2018
 $end
 $version
 	Icarus Verilog
@@ -11,84 +11,94 @@ $scope module sar_logic_tb $end
 $var wire 8 ! sar [7:0] $end
 $var wire 1 " s_clk_not $end
 $var wire 1 # s_clk $end
-$var wire 1 $ fine_switch_S_not $end
-$var wire 1 % fine_switch_S $end
-$var wire 9 & fine_sca2_top_not [8:0] $end
-$var wire 9 ' fine_sca2_top [8:0] $end
-$var wire 9 ( fine_sca2_btm_not [8:0] $end
-$var wire 9 ) fine_sca2_btm [8:0] $end
-$var wire 9 * fine_sca1_top_not [8:0] $end
-$var wire 9 + fine_sca1_top [8:0] $end
-$var wire 9 , fine_sca1_btm_not [8:0] $end
-$var wire 9 - fine_sca1_btm [8:0] $end
-$var wire 1 . eoc $end
-$var wire 1 / cmp_clk $end
-$var reg 1 0 clk $end
-$var reg 1 1 cmp_out $end
-$var reg 1 2 cnvst $end
-$var reg 1 3 rst $end
+$var wire 1 $ fine_switch_drain_not $end
+$var wire 1 % fine_switch_drain $end
+$var wire 1 & fine_switch_S_not $end
+$var wire 1 ' fine_switch_S $end
+$var wire 9 ( fine_sca2_top_not [8:0] $end
+$var wire 9 ) fine_sca2_top [8:0] $end
+$var wire 9 * fine_sca2_btm_not [8:0] $end
+$var wire 9 + fine_sca2_btm [8:0] $end
+$var wire 9 , fine_sca1_top_not [8:0] $end
+$var wire 9 - fine_sca1_top [8:0] $end
+$var wire 9 . fine_sca1_btm_not [8:0] $end
+$var wire 9 / fine_sca1_btm [8:0] $end
+$var wire 1 0 eoc $end
+$var wire 1 1 cmp_clk $end
+$var reg 1 2 clk $end
+$var reg 1 3 cmp_out $end
+$var reg 1 4 cnvst $end
+$var reg 1 5 rst $end
 $scope module test $end
-$var wire 1 0 clk $end
-$var wire 1 1 cmp_out $end
-$var wire 1 2 cnvst $end
-$var wire 9 4 fine_sca1_btm_not [8:0] $end
-$var wire 9 5 fine_sca1_top_not [8:0] $end
-$var wire 9 6 fine_sca2_btm_not [8:0] $end
-$var wire 9 7 fine_sca2_top_not [8:0] $end
-$var wire 1 $ fine_switch_S_not $end
-$var wire 1 3 rst $end
+$var wire 1 2 clk $end
+$var wire 1 3 cmp_out $end
+$var wire 1 4 cnvst $end
+$var wire 9 6 fine_sca1_btm_not [8:0] $end
+$var wire 9 7 fine_sca1_top_not [8:0] $end
+$var wire 9 8 fine_sca2_btm_not [8:0] $end
+$var wire 9 9 fine_sca2_top_not [8:0] $end
+$var wire 1 & fine_switch_S_not $end
+$var wire 1 $ fine_switch_drain_not $end
+$var wire 1 5 rst $end
 $var wire 1 " s_clk_not $end
-$var reg 4 8 b_coarse [3:0] $end
-$var reg 4 9 b_fine [3:0] $end
-$var reg 1 : bndset $end
-$var reg 1 / cmp_clk $end
-$var reg 1 . eoc $end
-$var reg 9 ; fine_sca1_btm [8:0] $end
-$var reg 9 < fine_sca1_top [8:0] $end
-$var reg 9 = fine_sca1_top_wait [8:0] $end
-$var reg 9 > fine_sca2_btm [8:0] $end
-$var reg 9 ? fine_sca2_top [8:0] $end
-$var reg 9 @ fine_sca2_top_wait [8:0] $end
-$var reg 1 % fine_switch_S $end
-$var reg 1 A fine_up $end
+$var reg 4 : b_coarse [3:0] $end
+$var reg 4 ; b_fine [3:0] $end
+$var reg 1 < bndset $end
+$var reg 1 1 cmp_clk $end
+$var reg 1 = drain $end
+$var reg 1 0 eoc $end
+$var reg 9 > fine_sca1_btm [8:0] $end
+$var reg 9 ? fine_sca1_top [8:0] $end
+$var reg 9 @ fine_sca1_top_wait [8:0] $end
+$var reg 9 A fine_sca2_btm [8:0] $end
+$var reg 9 B fine_sca2_top [8:0] $end
+$var reg 9 C fine_sca2_top_wait [8:0] $end
+$var reg 1 ' fine_switch_S $end
+$var reg 1 % fine_switch_drain $end
+$var reg 1 D fine_up $end
 $var reg 1 # s_clk $end
-$var reg 8 B sar [7:0] $end
-$var reg 4 C state [3:0] $end
+$var reg 8 E sar [7:0] $end
+$var reg 4 F state [3:0] $end
+$var reg 1 G swtop $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+xG
+bx F
+bx E
+xD
 bx C
 bx B
-xA
+bx A
 bx @
 bx ?
 bx >
-bx =
-bx <
+x=
+x<
 bx ;
-x:
+bx :
 bx 9
 bx 8
 bx 7
 bx 6
-bx 5
-bx 4
+15
+04
 13
 02
-11
-00
-x/
-x.
+x1
+x0
+bx /
+bx .
 bx -
 bx ,
 bx +
 bx *
 bx )
 bx (
-bx '
-bx &
+x'
+x&
 x%
 x$
 1#
@@ -96,312 +106,333 @@ x$
 bx !
 $end
 #50
-1$
-b11111 (
-b11111 6
-b0 &
-b0 7
-b11111 ,
-b11111 4
-b0 *
-b0 5
-b0 C
-0.
-1:
-b0 8
+1&
+b111111111 *
+b111111111 8
+b0 (
 b0 9
-0/
-0A
+b111111111 .
+b111111111 6
+b0 ,
+b0 7
+b0 F
+00
+1<
+b0 :
+b0 ;
+01
+0D
+1=
+1G
 b0 !
-b0 B
-0%
-b111100000 )
-b111100000 >
-b111111111 '
+b0 E
+0'
+b0 +
+b0 A
+b111111111 )
+b111111111 B
+b0 /
+b0 >
+b111111111 -
 b111111111 ?
-b111100000 -
-b111100000 ;
-b111111111 +
-b111111111 <
-10
-#100
-00
-#150
-10
-#200
-00
-#250
-10
-#300
-00
 12
-03
+#100
+02
+#150
+12
+#200
+02
+#250
+12
+#300
+02
+14
+05
 #350
 1"
 0#
-b111111111 (
-b111111111 6
+1$
+0%
+b0 C
 b0 @
-b0 =
-b0 )
-b0 >
 b10000000 !
-b10000000 B
-b11 9
-b11 8
-b1 C
-10
+b10000000 E
+b11 ;
+b11 :
+b1 F
+12
 #400
-00
-#450
-b10 C
-1/
-10
-#500
-00
 02
-#550
-b111 ,
-b111 4
-b111111000 -
-b111111000 ;
-b11000000 !
-b11000000 B
-0/
-b10 8
-b1 C
-10
-#600
-00
-#650
-b10 C
-1/
-10
-#700
-00
-#750
-b11 ,
-b11 4
-b111111100 -
-b111111100 ;
-b11100000 !
-b11100000 B
-0/
-b1 8
-b1 C
-10
-#800
-00
-#850
-b10 C
-1/
-10
-#900
-00
-#950
-b1 ,
-b1 4
-b111111110 -
-b111111110 ;
-b11110000 !
-b11110000 B
-0/
-b0 8
-b1 C
-10
-#1000
-00
-#1050
-b11 C
-1/
-10
-#1100
-00
-#1150
-b0 (
-b0 6
-b111111111 )
-b111111111 >
-b11111000 !
-b11111000 B
-1A
-0/
-0:
-10
-#1200
-00
-#1250
+#450
 0$
-b100 C
+0=
 1%
-10
+12
+#500
+02
+04
+#550
+b11111 .
+b11111 6
+1$
+b111100000 /
+b111100000 >
+0%
+b10 F
+12
+#600
+02
+#650
+b11 F
+11
+12
+#700
+02
+#750
+b111 .
+b111 6
+b111111000 /
+b111111000 >
+b11000000 !
+b11000000 E
+01
+b10 :
+b10 F
+12
+#800
+02
+#850
+b11 F
+11
+12
+#900
+02
+#950
+b11 .
+b11 6
+b111111100 /
+b111111100 >
+b11100000 !
+b11100000 E
+01
+b1 :
+b10 F
+12
+#1000
+02
+#1050
+b11 F
+11
+12
+#1100
+02
+#1150
+b1 .
+b1 6
+b111111110 /
+b111111110 >
+b11110000 !
+b11110000 E
+01
+b0 :
+b10 F
+12
+#1200
+02
+#1250
+b100 F
+11
+12
 #1300
-00
+02
 #1350
-b111111101 &
-b111111101 7
-b111111101 *
-b111111101 5
-b10 '
-b10 ?
-b10 +
-b10 <
-b10 @
-b10 =
-b1 C
-10
+b0 *
+b0 8
+b111111111 +
+b111111111 A
+b11111000 !
+b11111000 E
+1D
+01
+0<
+12
 #1400
-00
+02
 #1450
-b101 C
-1/
-10
+0&
+b101 F
+1'
+12
 #1500
-00
+02
 #1550
-b111111001 &
-b111111001 7
-b110 '
-b110 ?
-b100001110 @
-b11111100 !
-b11111100 B
-0/
-b10 9
-b1 C
-10
+b111111111 (
+b111111111 9
+b111111111 ,
+b111111111 7
+b0 )
+b0 B
+b0 -
+b0 ?
+b10 C
+b10 @
+0G
+12
 #1600
-00
+02
 #1650
-b101 C
-1/
-10
+b111111101 ,
+b111111101 7
+b111111101 (
+b111111101 9
+b10 F
+b10 -
+b10 ?
+b10 )
+b10 B
+12
 #1700
-00
+02
 #1750
-b111100001 &
-b111100001 7
-b11110 '
-b11110 ?
-b110011110 @
-b11111110 !
-b11111110 B
-0/
-b1 9
-b1 C
-10
+11
+b110 F
+12
 #1800
-00
+02
 #1850
-b101 C
-1/
-10
+b111111001 (
+b111111001 9
+b10 F
+b10 ;
+01
+b11111100 !
+b11111100 E
+b110 )
+b110 B
+b100001110 C
+12
 #1900
-00
+02
 #1950
-b1 &
-b1 7
-b111111110 '
-b111111110 ?
-b111111110 @
-b11111111 !
-b11111111 B
-0/
-b0 9
-b1 C
-10
+11
+b110 F
+12
 #2000
-00
+02
 #2050
-b101 C
-1/
-10
+b111100001 (
+b111100001 9
+b10 F
+b1 ;
+01
+b11111110 !
+b11111110 E
+b11110 )
+b11110 B
+b110011110 C
+12
 #2100
-00
+02
 #2150
+11
+b110 F
+12
+#2200
+02
+#2250
+b1 (
+b1 9
+b10 F
+b0 ;
+01
+b11111111 !
+b11111111 E
+b111111110 )
+b111111110 B
+b111111110 C
+12
+#2300
+02
+#2350
+11
+b110 F
+12
+#2400
+02
+#2450
 0"
 1#
-0/
-1.
-b0 C
+b0 F
 10
-#2200
-00
-#2250
-1$
-b111111111 (
-b111111111 6
-b0 &
-b0 7
-b11111 ,
-b11111 4
-b0 *
-b0 5
-0.
-1:
-b11 8
-b11 9
-b10000000 !
-b10000000 B
-b0 @
-b0 =
-0%
-b0 )
-b0 >
-b111111111 '
-b111111111 ?
-b111100000 -
-b111100000 ;
-b111111111 +
-b111111111 <
-10
-#2300
-00
-#2350
-10
-#2400
-00
-#2450
-10
+01
+12
 #2500
-00
+02
 #2550
-10
+1&
+b111111111 *
+b111111111 8
+b0 (
+b0 9
+b111111111 .
+b111111111 6
+b0 ,
+b0 7
+b0 C
+b0 @
+0'
+b0 +
+b0 A
+b111111111 )
+b111111111 B
+b0 /
+b0 >
+b111111111 -
+b111111111 ?
+b10000000 !
+b10000000 E
+1G
+1=
+b11 ;
+b11 :
+1<
+00
+12
 #2600
-00
+02
 #2650
-10
+12
 #2700
-00
+02
 #2750
-10
+12
 #2800
-00
+02
 #2850
-10
+12
 #2900
-00
+02
 #2950
-10
+12
 #3000
-00
+02
 #3050
-10
+12
 #3100
-00
+02
 #3150
-10
+12
 #3200
-00
+02
 #3250
-10
+12
 #3300
-00
+02
 #3350
-10
+12
 #3400
-00
+02
 #3450
-10
+12
 #3500
-00
+02

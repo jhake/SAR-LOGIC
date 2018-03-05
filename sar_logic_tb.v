@@ -24,8 +24,8 @@ module sar_logic_tb;
 	wire fine_switch_S_not;
 
 
-	sar_logic test(clk, rst, cnvst, cmp_out, sar, eoc, cmp_clk, s_clk, fine_sca1_top, fine_sca1_btm, fine_sca2_top, fine_sca2_btm, fine_switch_S, s_clk_not, fine_sca1_top_not,
-		fine_sca1_btm_not, fine_sca2_top_not, fine_sca2_btm_not, fine_switch_S_not);
+	sar_logic test(clk, rst, cnvst, cmp_out, sar, eoc, cmp_clk, s_clk, fine_sca1_top, fine_sca1_btm, fine_sca2_top, fine_sca2_btm, fine_switch_S, fine_switch_drain, s_clk_not, fine_sca1_top_not,
+		fine_sca1_btm_not, fine_sca2_top_not, fine_sca2_btm_not, fine_switch_S_not, fine_switch_drain_not);
 
 	always #5 clk = !clk;
 

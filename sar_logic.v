@@ -13,6 +13,7 @@ module sar_logic(
 	output reg [8:0] fine_sca2_top,
 	output reg [8:0] fine_sca2_btm,
 	output reg fine_switch_S,
+	output reg fine_switch_drain,
 
 	//INVERTED OUTPUTS
 	output s_clk_not,
@@ -20,15 +21,17 @@ module sar_logic(
 	output [8:0] fine_sca1_btm_not,
 	output [8:0] fine_sca2_top_not,
 	output [8:0] fine_sca2_btm_not,
-	output fine_switch_S_not
+	output fine_switch_S_not,
+	output fine_switch_drain_not
 	);
 	
 	parameter S_wait		= 3'd0;
-	parameter S_comprst	= 3'd1;
-	parameter S_coarse	= 3'd2;
-	parameter S_bndset	= 3'd3;
-	parameter S_swtop		= 3'd4;
-	parameter S_fine		= 3'd5;
+	parameter S_drain 	= 3'd1;
+	parameter S_comprst	= 3'd2;
+	parameter S_coarse	= 3'd3;
+	parameter S_bndset	= 3'd4;
+	parameter S_swtop		= 3'd5;
+	parameter S_fine		= 3'd6;
 
 	assign s_clk_not = ~s_clk;
 	assign fine_sca1_top_not = ~fine_sca1_top;
@@ -36,6 +39,7 @@ module sar_logic(
 	assign fine_sca2_top_not = ~fine_sca2_top;
 	assign fine_sca2_btm_not = ~fine_sca2_btm;
 	assign fine_switch_S_not = ~fine_switch_S;
+	assign fine_switch_drain_not = ~fine_switch_drain;
 
 	reg [8:0] fine_sca1_top_wait;
 	reg [8:0] fine_sca2_top_wait;
@@ -44,6 +48,7 @@ module sar_logic(
 	reg [3:0] b_coarse;
 	reg [3:0] b_fine;
 	reg bndset;
+	reg drain;
 
 	reg fine_up; // 1 if SCA2 has upper bound voltage
 
@@ -54,9 +59,14 @@ module sar_logic(
 			case(state)
 				S_wait:
 					if(cnvst)
-						state <= S_comprst;
+						state <= S_drain;
 					else 
 						state <= S_wait;
+				S_drain:
+					if(drain)
+						state <= S_drain;
+					else
+						state <= S_comprst;
 				S_comprst:
 					if(b_coarse)
 						state <= S_coarse;
@@ -169,6 +179,17 @@ module sar_logic(
 				fine_up <= 1;
 	end
 
+	always @(posedge clk) begin //drain
+		if (rst) 
+			// reset
+			drain <= 1;
+		else 
+			if (state == S_drain)
+				drain <= 0;
+			else if (state == S_wait)
+				drain <= 1;
+	end
+
 	always @(posedge clk) begin //sar
 		if (rst) begin
 			// reset
@@ -198,26 +219,35 @@ module sar_logic(
 			endcase
 	end
 
+
 	always @(posedge clk) begin //DAC_switch_control
 		if (rst) begin
 			// reset
 			fine_sca1_top <= 9'b111111111;
-			fine_sca1_btm <= 9'b111100000;
+			fine_sca1_btm <= 9'b000000000;
 			fine_sca2_top <= 9'b111111111;
-			fine_sca2_btm <= 9'b111100000;
+			fine_sca2_btm <= 9'b000000000;
 			fine_switch_S <= 0;
 		end
 		else
 			case(state)
 				S_wait: begin
 					fine_sca1_top <= 9'b111111111;
-					fine_sca1_btm <= 9'b111100000;
+					fine_sca1_btm <= 9'b000000000;
 					fine_sca2_top <= 9'b111111111;
 					fine_sca2_btm <= 9'b000000000;
 					fine_switch_S <= 0;
 					fine_sca1_top_wait <= 9'b000000000;
 					fine_sca2_top_wait <= 9'b000000000;
+					fine_switch_drain <= 0;
 				end
+				S_drain:
+					if(drain)
+						fine_switch_drain <= 1;
+					else begin
+						fine_switch_drain <= 0;
+						fine_sca1_btm <= 9'b111100000;
+					end
 				S_coarse:
 					case(b_coarse)
 						4'd3:
