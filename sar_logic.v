@@ -312,18 +312,19 @@ module sar_logic(
 								fine_sca2_btm[5] <= 0;
 								fine_sca2_btm[4:0] <= fine_sca1_btm[4:0];
 							end
-						0:
-							fine_switch_S <= 1;
+						0: begin
+							fine_sca1_top_wait <= 9'b000000010;
+							fine_sca2_top_wait <= 9'b000000010;
+							fine_sca1_top <= 9'b000000000;
+							fine_sca2_top <= 9'b000000000;
+						end
+							
 
 					endcase
 
 				S_swtop: 
-					if(swtop) begin
-						fine_sca1_top_wait <= 9'b000000010;
-						fine_sca2_top_wait <= 9'b000000010;
-						fine_sca1_top <= 9'b000000000;
-						fine_sca2_top <= 9'b000000000;
-					end
+					if(swtop)
+						fine_switch_S <= 1;
 					else begin
 						fine_sca2_top <= 9'b000000010;
 						fine_sca1_top <= 9'b000000010;
