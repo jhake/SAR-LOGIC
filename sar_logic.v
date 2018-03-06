@@ -47,7 +47,7 @@ module sar_logic(
 	reg [3:0] state;
 	reg [3:0] b_coarse;
 	reg [3:0] b_fine;
-	reg bndset;
+	reg [1:0] bndset;
 	reg drain;
 	reg swtop;
 
@@ -114,13 +114,14 @@ module sar_logic(
 	always @(posedge clk) begin //bndset
 		if (rst)
 			// reset
-			bndset <= 1;
+			bndset <= 2;
 		else 
 			case(state)
 				S_wait:
-					bndset <= 1;
+					bndset <= 2;
 				S_bndset:
-					bndset <= 0;
+					if(bndset)
+						bndset <= bndset - 1;
 			endcase
 	end
 
@@ -179,7 +180,7 @@ module sar_logic(
 			// reset
 			fine_up <= 0;
 		else 
-			if (state == S_bndset && bndset && cmp_out) 
+			if (state == S_bndset == 1 && bndset == 1 && cmp_out) 
 				fine_up <= 1;
 	end
 
@@ -242,7 +243,7 @@ module sar_logic(
 			fine_sca1_btm <= 9'b000000000;
 			fine_sca2_top <= 9'b111111111;
 			fine_sca2_btm <= 9'b000000000;
-			fine_switch_S <= 0;
+			fine_switch_S <= 1;
 		end
 		else
 			case(state)
@@ -251,7 +252,7 @@ module sar_logic(
 					fine_sca1_btm <= 9'b000000000;
 					fine_sca2_top <= 9'b111111111;
 					fine_sca2_btm <= 9'b000000000;
-					fine_switch_S <= 0;
+					fine_switch_S <= 1;
 					fine_sca1_top_wait <= 9'b000000000;
 					fine_sca2_top_wait <= 9'b000000000;
 					fine_switch_drain <= 0;
@@ -262,55 +263,63 @@ module sar_logic(
 					else begin
 						fine_switch_drain <= 0;
 						fine_sca1_btm <= 9'b111100000;
+						fine_sca2_btm <= 9'b111100000;
 					end
 				S_coarse:
 					case(b_coarse)
 						4'd3:
 							if(cmp_out) begin
 								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
 							end		
 
 							else begin
 								fine_sca1_btm[8] <= 0;
+								fine_sca2_btm[8] <= 0;
 							end
 						4'd2:
 							if(cmp_out) begin
 								fine_sca1_btm[2] <= 1;
+								fine_sca2_btm[2] <= 1;
 							end		
 											
 							else begin
 								fine_sca1_btm[7] <= 0;
+								fine_sca2_btm[7] <= 0;
 							end
 						4'd1:
 							if(cmp_out) begin
 								fine_sca1_btm[1] <= 1;
+								fine_sca2_btm[1] <= 1;
 							end		
 											
 							else begin
 								fine_sca1_btm[6] <= 0;
+								fine_sca2_btm[6] <= 0;
 							end
 						4'd0:
 							if(cmp_out) begin
 								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
 							end		
 											
 							else begin
 								fine_sca1_btm[4:3] <= 2'b11;
+								fine_sca2_btm[4:3] <= 2'b11;
 							end
 					endcase
 
 				S_bndset:
 					case(bndset)
+						2:
+							fine_switch_S <= 0;
 						1:
 							if(cmp_out) begin
-								fine_sca2_btm[8:1] <= fine_sca1_btm[8:1];
 								fine_sca2_btm[0] <= 1;
 							end		
 											
 							else begin
-								fine_sca2_btm[8:6] <= fine_sca1_btm[8:6];
 								fine_sca2_btm[5] <= 0;
-								fine_sca2_btm[4:0] <= fine_sca1_btm[4:0];
 							end
 						0: begin
 							fine_sca1_top_wait <= 9'b000000010;
