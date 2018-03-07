@@ -47,7 +47,7 @@ module sar_logic_tb;
 
 		#20
 
-		cnvst = 0;
+		cnvst = 1;
 
 		#300
 
