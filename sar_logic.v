@@ -363,6 +363,7 @@ module sar_logic(
 								fine_sca1_top_wait[7] <= 1;
 								fine_sca1_top_wait[4] <= 1;
 								fine_sca1_top[3] <= fine_sca1_top_wait[3];
+								fine_sca2_top[3] <= fine_sca2_top_wait[3];
 								fine_sca1_top[4] <= 1;
 							end		
 											
@@ -370,18 +371,21 @@ module sar_logic(
 								fine_sca2_top_wait[7] <= 1;
 								fine_sca2_top_wait[4] <= 1;
 								fine_sca2_top[3] <= fine_sca2_top_wait[3];
+								fine_sca1_top[3] <= fine_sca1_top_wait[3];
 								fine_sca2_top[4] <= 1;							
 							end
 						4'd1:
 							if( (cmp_out && fine_up == 0) || (cmp_out == 0 && fine_up) ) begin
 								fine_sca1_top_wait[6:5] <= 2'b11;
 								fine_sca1_top[8:7] <= fine_sca1_top_wait[8:7];
+								fine_sca2_top[8:7] <= fine_sca2_top_wait[8:7];
 								fine_sca1_top[6:5] <= 2'b11;
 							end		
 											
 							else begin
 								fine_sca2_top_wait[6:5] <= 2'b11;
 								fine_sca2_top[8:7] <= fine_sca2_top_wait[8:7];
+								fine_sca1_top[8:7] <= fine_sca1_top_wait[8:7];
 								fine_sca2_top[6:5] <= 2'b11;
 							end
 						// 4'd0:
