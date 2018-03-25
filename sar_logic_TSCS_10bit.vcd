@@ -1,0 +1,501 @@
+$date
+	Wed Mar 14 18:18:22 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module sar_logic_TSCS_10bit_tb $end
+$var wire 10 ! sar [9:0] $end
+$var wire 1 " s_clk_not $end
+$var wire 1 # s_clk $end
+$var wire 1 $ fine_switch_drain_not $end
+$var wire 1 % fine_switch_drain $end
+$var wire 1 & fine_switch_S_not $end
+$var wire 1 ' fine_switch_S $end
+$var wire 13 ( fine_sca2_top_not [12:0] $end
+$var wire 13 ) fine_sca2_top [12:0] $end
+$var wire 13 * fine_sca2_btm_not [12:0] $end
+$var wire 13 + fine_sca2_btm [12:0] $end
+$var wire 13 , fine_sca1_top_not [12:0] $end
+$var wire 13 - fine_sca1_top [12:0] $end
+$var wire 13 . fine_sca1_btm_not [12:0] $end
+$var wire 13 / fine_sca1_btm [12:0] $end
+$var wire 1 0 eoc $end
+$var wire 1 1 cmp_clk $end
+$var reg 1 2 clk $end
+$var reg 1 3 cmp_out $end
+$var reg 1 4 cnvst $end
+$var reg 1 5 rst $end
+$scope module test $end
+$var wire 1 2 clk $end
+$var wire 1 3 cmp_out $end
+$var wire 1 4 cnvst $end
+$var wire 13 6 fine_sca1_btm_not [12:0] $end
+$var wire 13 7 fine_sca1_top_not [12:0] $end
+$var wire 13 8 fine_sca2_btm_not [12:0] $end
+$var wire 13 9 fine_sca2_top_not [12:0] $end
+$var wire 1 & fine_switch_S_not $end
+$var wire 1 $ fine_switch_drain_not $end
+$var wire 1 5 rst $end
+$var wire 1 " s_clk_not $end
+$var reg 4 : b_coarse [3:0] $end
+$var reg 4 ; b_fine [3:0] $end
+$var reg 2 < bndset [1:0] $end
+$var reg 1 1 cmp_clk $end
+$var reg 2 = drain [1:0] $end
+$var reg 1 0 eoc $end
+$var reg 13 > fine_sca1_btm [12:0] $end
+$var reg 13 ? fine_sca1_top [12:0] $end
+$var reg 13 @ fine_sca1_top_wait [12:0] $end
+$var reg 13 A fine_sca2_btm [12:0] $end
+$var reg 13 B fine_sca2_top [12:0] $end
+$var reg 13 C fine_sca2_top_wait [12:0] $end
+$var reg 1 ' fine_switch_S $end
+$var reg 1 % fine_switch_drain $end
+$var reg 1 D fine_up $end
+$var reg 1 # s_clk $end
+$var reg 10 E sar [9:0] $end
+$var reg 4 F state [3:0] $end
+$var reg 1 G swtop $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+xG
+bx F
+bx E
+xD
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+15
+04
+13
+02
+x1
+x0
+bx /
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+x'
+x&
+x%
+x$
+1#
+0"
+bx !
+$end
+#50
+1$
+0&
+b1111111111111 *
+b1111111111111 8
+b0 (
+b0 9
+b1111111111111 .
+b1111111111111 6
+b0 ,
+b0 7
+b0 F
+00
+b10 <
+b0 :
+b0 ;
+01
+0D
+b1 =
+1G
+b0 !
+b0 E
+0%
+1'
+b0 +
+b0 A
+b1111111111111 )
+b1111111111111 B
+b0 /
+b0 >
+b1111111111111 -
+b1111111111111 ?
+12
+#100
+02
+#150
+12
+#200
+02
+#250
+12
+#300
+02
+14
+05
+#350
+1"
+0#
+b0 C
+b0 @
+b1000000000 !
+b1000000000 E
+b10 =
+b100 ;
+b100 :
+b1 F
+12
+#400
+02
+#450
+0$
+b1 =
+1%
+12
+#500
+02
+#550
+1$
+0%
+b0 =
+12
+#600
+02
+#650
+b11111111 *
+b11111111 8
+b11111111 .
+b11111111 6
+b10 F
+b1111100000000 +
+b1111100000000 A
+b1111100000000 /
+b1111100000000 >
+12
+#700
+02
+#750
+11
+b11 F
+12
+#800
+02
+#850
+b11111 *
+b11111 8
+b11111 .
+b11111 6
+b10 F
+b11 :
+01
+b1100000000 !
+b1100000000 E
+b1111111100000 +
+b1111111100000 A
+b1111111100000 /
+b1111111100000 >
+12
+#900
+02
+#950
+11
+b11 F
+12
+#1000
+02
+#1050
+b111 *
+b111 8
+b111 .
+b111 6
+b10 F
+b10 :
+01
+b1110000000 !
+b1110000000 E
+b1111111111000 +
+b1111111111000 A
+b1111111111000 /
+b1111111111000 >
+12
+#1100
+02
+#1150
+11
+b11 F
+12
+#1200
+02
+#1250
+b11 *
+b11 8
+b11 .
+b11 6
+b10 F
+b1 :
+01
+b1111000000 !
+b1111000000 E
+b1111111111100 +
+b1111111111100 A
+b1111111111100 /
+b1111111111100 >
+12
+#1300
+02
+#1350
+11
+b11 F
+12
+#1400
+02
+#1450
+b1 *
+b1 8
+b1 .
+b1 6
+b10 F
+b0 :
+01
+b1111100000 !
+b1111100000 E
+b1111111111110 +
+b1111111111110 A
+b1111111111110 /
+b1111111111110 >
+12
+#1500
+02
+#1550
+11
+b100 F
+12
+#1600
+02
+#1650
+1&
+b1 <
+01
+b1111110000 !
+b1111110000 E
+0'
+12
+#1700
+02
+#1750
+b0 *
+b0 8
+b1111111111111 +
+b1111111111111 A
+1D
+b0 <
+12
+#1800
+02
+#1850
+b1111111111111 (
+b1111111111111 9
+b1111111111111 ,
+b1111111111111 7
+b101 F
+b0 )
+b0 B
+b0 -
+b0 ?
+b10 C
+b10 @
+12
+#1900
+02
+#1950
+0&
+1'
+0G
+12
+#2000
+02
+#2050
+b1111111111101 ,
+b1111111111101 7
+b1111111111101 (
+b1111111111101 9
+b10 F
+b10 -
+b10 ?
+b10 )
+b10 B
+12
+#2100
+02
+#2150
+11
+b110 F
+12
+#2200
+02
+#2250
+b1111111111001 (
+b1111111111001 9
+b10 F
+b11 ;
+01
+b1111111000 !
+b1111111000 E
+b110 )
+b110 B
+b1000010010110 C
+12
+#2300
+02
+#2350
+11
+b110 F
+12
+#2400
+02
+#2450
+b1111111100001 (
+b1111111100001 9
+b10 F
+b10 ;
+01
+b1111111100 !
+b1111111100 E
+b11110 )
+b11110 B
+b1100011011110 C
+12
+#2500
+02
+#2550
+11
+b110 F
+12
+#2600
+02
+#2650
+b1111100000001 (
+b1111100000001 9
+b10 F
+b1 ;
+01
+b1111111110 !
+b1111111110 E
+b11111110 )
+b11111110 B
+b1110011111110 C
+12
+#2700
+02
+#2750
+11
+b110 F
+12
+#2800
+02
+#2850
+b1 (
+b1 9
+b10 F
+b0 ;
+01
+b1111111111 !
+b1111111111 E
+b1111111111110 )
+b1111111111110 B
+b1111111111110 C
+12
+#2900
+02
+#2950
+11
+b110 F
+12
+#3000
+02
+#3050
+0"
+1#
+b0 F
+10
+01
+12
+#3100
+02
+#3150
+1"
+0#
+b1111111111111 *
+b1111111111111 8
+b0 (
+b0 9
+b1111111111111 .
+b1111111111111 6
+b0 ,
+b0 7
+b0 C
+b0 @
+b0 +
+b0 A
+b1111111111111 )
+b1111111111111 B
+b0 /
+b0 >
+b1111111111111 -
+b1111111111111 ?
+b1000000000 !
+b1000000000 E
+1G
+b10 =
+b100 ;
+b100 :
+b10 <
+00
+b1 F
+12
+#3200
+02
+#3250
+0$
+b1 =
+1%
+12
+#3300
+02
+#3350
+1$
+0%
+b0 =
+12
+#3400
+02
+#3450
+b11111111 *
+b11111111 8
+b11111111 .
+b11111111 6
+b10 F
+b1111100000000 +
+b1111100000000 A
+b1111100000000 /
+b1111100000000 >
+12
+#3500
+02
