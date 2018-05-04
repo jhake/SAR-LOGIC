@@ -1,6 +1,5 @@
+LPHVT 
 
-
-LPHVT
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -8,16 +7,15 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network  9.0886e-07        2.1244e-06            0.0000        3.0567e-06  (   0.55%)
-register       2.0698e-04        8.6539e-06        1.5111e-06        2.1715e-04  (  38.89%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       3.6764e-05        8.7628e-07        1.0101e-06        3.8651e-05  (  84.59%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  1.4881e-04        1.7984e-04        9.5595e-06        3.3821e-04  (  60.57%)
+combinational  1.7037e-06        4.8685e-06        4.6925e-07        7.0414e-06  (  15.41%)
 --------------------------------------------------------------------------------------------------
-Total          3.5670e-04 mW     1.9062e-04 mW     1.1094e-05 mW     5.5842e-04 mW
+Total          3.8468e-05 mW     5.7447e-06 mW     1.4793e-06 mW     4.5692e-05 mW
 
 
-
-1 aW max lekage, LPHVT
+set dont use
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -25,15 +23,14 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network  8.7917e-07        1.9572e-06            0.0000        2.8576e-06  (   0.43%)
-register       2.1583e-04        7.1465e-06        2.3319e-06        2.2531e-04  (  33.60%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000        9.3921e-07            0.0000        9.3921e-07  (  15.70%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  1.9885e-04        2.3090e-04        1.2570e-05        4.4232e-04  (  65.97%)
+combinational  1.8411e-06        2.6062e-06        5.9404e-07        5.0414e-06  (  84.30%)
 --------------------------------------------------------------------------------------------------
-Total          4.1556e-04 mW     2.4001e-04 mW     1.4923e-05 mW     6.7049e-04 mW
+Total          1.8411e-06 mW     3.5454e-06 mW     5.9404e-07 mW     5.9806e-06 mW
 
-
-1 nW max leakage, LPHVT
+NAND ar NOR lang 
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -41,9 +38,9 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network  8.7917e-07        1.9572e-06            0.0000        2.8576e-06  (   0.43%)
-register       2.1583e-04        7.1465e-06        2.3319e-06        2.2531e-04  (  33.60%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000        7.5773e-07            0.0000        7.5773e-07  (  13.29%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  1.9885e-04        2.3090e-04        1.2570e-05        4.4232e-04  (  65.97%)
+combinational  1.6416e-06        2.7192e-06        5.8361e-07        4.9444e-06  (  86.71%)
 --------------------------------------------------------------------------------------------------
-Total          4.1556e-04 mW     2.4001e-04 mW     1.4923e-05 mW     6.7049e-04 mW
+Total          1.6416e-06 mW     3.4770e-06 mW     5.8361e-07 mW     5.7021e-06 mW
